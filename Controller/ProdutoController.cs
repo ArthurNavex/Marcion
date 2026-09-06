@@ -2,7 +2,6 @@ using Marcion.Data;
 using Marcion.Entitys;
 using Marcion.Models.Produto;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Marcion.Controllers;
 
@@ -28,6 +27,9 @@ public class ProdutoController : ControllerBase
             Estoque = request.Estoque
         };
 
+        _context.Produtos.Add(ProdutoCriado);
+        _context.SaveChanges();
+
         var response = new ProdutoResponse
         {
             Id = ProdutoCriado.Id,
@@ -35,10 +37,7 @@ public class ProdutoController : ControllerBase
             Preco = ProdutoCriado.PrecoUnitario,
             Estoque = ProdutoCriado.Estoque
         };
-
-        _context.Produtos.Add(ProdutoCriado);
-        _context.SaveChanges();
-
+        
         return Ok(response);
     }
 
@@ -47,6 +46,11 @@ public class ProdutoController : ControllerBase
     {
         var produtos = _context.Produtos.ToList();
         var response = new List<ProdutoResponse>();
+
+        if(produtos == null)
+        {
+            return NotFound();
+        }
 
         foreach (var produto in produtos)
         {
@@ -62,6 +66,67 @@ public class ProdutoController : ControllerBase
         return Ok(response);
     }
 
-    
+    [HttpGet ("{id}")]
+    public IActionResult GetIndice (int id)
+    {
+        var produto = _context.Produtos.FirstOrDefault(produto => produto.Id == id);
 
+        if (produto == null)
+        {
+            return NotFound();
+        }
+
+        var response = new ProdutoResponse
+        {
+            Id = produto.Id,
+            Nome = produto.Nome,
+            Preco = produto.PrecoUnitario,
+            Estoque = produto.Estoque
+        };
+        
+        return Ok(response);
+    }
+
+    [HttpPut ("{id}")]
+    public IActionResult Put (int id, UpdateProdutoRequest request)
+    {
+        var produto = _context.Produtos.FirstOrDefault(produto => produto.Id == id);
+
+        if(produto == null)
+        {
+            return NotFound();
+        }
+
+        produto.Nome = request.Nome;
+        produto.PrecoUnitario = request.Preco;
+        produto.Estoque = request.Estoque;
+
+        _context.SaveChanges();
+
+        var response = new ProdutoResponse
+        {
+            Id = produto.Id,
+            Nome = produto.Nome,
+            Preco = produto.PrecoUnitario,
+            Estoque = produto.Estoque
+        };
+
+        return Ok(response);
+    }
+
+    [HttpDelete ("{id}")]
+    public IActionResult Delete (int id)
+    {
+        var produto = _context.Produtos.FirstOrDefault(produto => produto.Id == id);
+
+        if(produto == null)
+        {
+            return NotFound();
+        }
+
+        _context.Remove(produto);
+        _context.SaveChanges();
+
+        return NoContent();
+    }
 }
