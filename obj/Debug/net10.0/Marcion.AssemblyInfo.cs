@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Marcion")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+767edc163125ed6f06f4ed5142a94518bc2b1c9f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+669e2b613608107a5a45482550054db1c7be6f8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Marcion")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Marcion")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

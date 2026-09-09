@@ -22,6 +22,7 @@ public class PedidoController : ControllerBase
     public IActionResult Post (CreatePedidoRequest request)
     {
         var cliente = _context.Clientes.FirstOrDefault(cliente => cliente.Id == request.ClienteId);
+        var itensPedido = new List<ItemPedido>();
 
         if (cliente == null)
         {
@@ -36,8 +37,48 @@ public class PedidoController : ControllerBase
             {
                 return NotFound("Item não encontrado");
             }
+
+            var itemPedido = new ItemPedido
+            {
+                ProdutoId = produto.Id,
+                Produto = produto,
+                Quantidade = itemPedidoRequest.Quantidade,
+                PrecoUnitario = produto.PrecoUnitario,
+                SubTotal = produto.PrecoUnitario * itemPedidoRequest.Quantidade            
+            };
+
+            itensPedido.Add(itemPedido);
         }
 
-        return Ok();
+        var pedido = new Pedido
+        {
+            Cliente = cliente,
+            ClienteId = cliente.Id,
+            Itens = itensPedido,
+            Data = DateTime.Now,
+            PrecoFinal = itensPedido.Sum(item => item.SubTotal)
+        };
+        
+        _context.Pedidos.Add(pedido);
+        _context.SaveChanges();
+
+        var response = new PedidoResponse
+        {
+            Id = pedido.Id,
+            NomeCliente = cliente.Nome,
+            DataPedido = pedido.Data,
+            Itens = pedido.Itens.Select(item => new ItemPedidoResponse
+            {
+                Id = item.Id,
+                NomeProduto = item.Produto.Nome,
+                ProdutoId = item.ProdutoId,
+                Quantidade = item.Quantidade,
+                PrecoUnitario = item.PrecoUnitario,
+                SubTotal = item.SubTotal
+            }).ToList(),
+            PrecoTotal = pedido.PrecoFinal
+        };
+
+        return Ok(response);
     }
 }
