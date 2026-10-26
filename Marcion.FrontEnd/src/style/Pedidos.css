@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+body {
+    min-width: 320px;
+}
+
+main {
+    margin-left: 250px;
+    min-height: 100vh;
+    background-color: #F5F4EF;
+    height: 100%;
+}
+
+.headerMain {
+    height: 10vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    border-bottom: 2px solid #D6D5CF;
+    gap: 20px;
+}
+
+.usuario {
+    padding: 15px 20px ;
+    border-left: 2px solid #D6D5CF;
+}
+
+.tituloPedidos {
+    margin: 30px 10vh;
+    color: #102F23;
+}
+
+.cliente {
+    margin: 0px 10vh;
+    padding: 4vh 0px;
+    background-color: #FDFCFA;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+.seletor-cliente {
+    position: relative;
+    display: flex;
+    width: 65vh;
+    padding-left: 30px;
+}
+
+.lista-clientes {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+
+  max-height: 240px;
+  overflow-y: auto;
+
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.lista-aberta {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+
+    box-sizing: border-box;
+    z-index: 10;
+
+    padding-left: 30px; 
+}

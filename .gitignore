@@ -1,0 +1,11 @@
+# .NET
+**/bin/
+**/obj/
+
+# React
+**/node_modules/
+**/dist/
+
+# Arquivos locais
+.vs/
+.vscode/

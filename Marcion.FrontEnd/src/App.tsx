@@ -1,189 +1,70 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { Routes, Route, Link } from 'react-router'
+import logo from './assets/logoAgroPedidosPNG.png'
+import nomeLogo from './assets/nomeLogo.png'
+import telaInicial from './assets/tela_inicial.png'
+import clientes from './assets/clientes.png'
+import produtos from './assets/produtos.png'
+import pedidos from './assets/pedidos.png'
+import './style/App.css'
+import './index.css'
+import Produtos from './pages/produtos'
+import Pedidos from './pages/pedidos'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const nomepagina = 'Marcion'
-
-  interface Produto {
-    id: number,
-    nome: string,
-    precoUnitario: number,
-    estoque: number
-    quantidade: number
-  }
-
-  const [produtos, setProdutos] = useState<Produto[]> ([
-    {id: 1, nome: 'Soja', precoUnitario: 120.50, estoque: 20, quantidade:0},
-    {id: 2, nome: 'Fuba', precoUnitario: 78.00, estoque: 10, quantidade:0},
-    {id: 3, nome: 'Milho', precoUnitario: 78.00, estoque: 52, quantidade:0}
-  ])
-
-  const totalPedido = produtos.reduce((acumulado, produto) =>
-    acumulado + produto.quantidade * produto.precoUnitario, 0
-  )
-
-  function adicionarProdutos(id: number) {
-    setProdutos(anteriores =>
-      anteriores.map(produto =>{
-          if(produto.id === id && produto.quantidade <= produto.estoque) {
-            return {...produto, quantidade: produto.quantidade + 1}
-          }
-
-          return produto
-       }
-      )
-    )
-  }
-
-  function removerProdutos(id: number) {
-    setProdutos(anteriores =>
-      anteriores.map(produto =>{
-        if(produto.id === id && produto.quantidade > 0) {
-          return {...produto, quantidade: produto.quantidade - 1}
-        }
-
-        return produto
-      })
-    )
-  }
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+      <aside className='sideBarNavigation'>
+        
         <div>
-          <h1>{nomepagina}</h1>
-          <p>
-            Central de gerenciamento de produtos, clientes e pedidos.
-          </p>
+          <div className='logoSideBar'>
 
-          {
-            produtos.map(produto => (
-            <p key={produto.id}>{produto.nome} R${produto.precoUnitario}. Estoque:{produto.estoque} {produto.estoque > 0 ? 'Disponivel' : 'Não Disponivel'}
-              <button
-              type="button"
-              className="counter"
-              onClick={() => adicionarProdutos(produto.id)}
-              disabled={produto.quantidade >= produto.estoque}>
-                Adicionar
-              </button>
+            <Link to="/#">
+              <img src={logo} width='100' alt="" />
+              <img src={nomeLogo} width='100' alt="" />
+            </Link>
+            
+          </div>
 
-              <button
-              type="button"
-              className="counter"
-              onClick={() => removerProdutos(produto.id)}
-              disabled={produto.quantidade <= 0}>
-                Remover
-              </button>
-              : {produto.quantidade} SubTotal: {produto.quantidade * produto.precoUnitario}
-            </p>
-          ))
-          }
-          <p>Preço Total: {totalPedido}</p>
+          <nav className='assideNav'> 
+            <Link to="/#" className='linkNav'>
+              <img src={telaInicial} alt="Tela Inicial" className='iconeMenu' />
+              <span>
+                Tela Inicial
+              </span>
+            </Link>
 
+            <Link to="/#" className='linkNav'>
+              <img src={clientes} alt="Clientes" className='iconeMenu' />
+              <span>Clientes</span>
+            </Link>
+
+            <Link to="/produtos" className='linkNav'>
+              <img src={produtos} alt="Produtos" className='iconeMenu' />
+              <span>Produtos</span>
+            </Link>
+
+            <Link to="/pedidos" className='linkNav'>
+              <img src={pedidos} alt="Pedidos" className='iconeMenu' />
+              <span>Pedidos</span>
+            </Link>
+          </nav>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </aside>
 
-      <div className="ticks"></div>
+      <main>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <header className='headerMain'>
+          <div className='notificacoes'> <a href="#">🔔</a></div>
+          <div className='usuario'>Arthur Naves</div>
+        </header>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+        <Routes>
+          <Route path="/produtos" element={<Produtos />} />
+          <Route path='/pedidos' element={<Pedidos/>}></Route>
+        </Routes>
+      </main>
     </>
   )
 }
