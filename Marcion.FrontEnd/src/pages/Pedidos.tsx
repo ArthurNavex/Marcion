@@ -23,7 +23,6 @@ function Pedidos() {
 
   return (
     <>
-    <h1>Estou na página de Pedidos</h1>
 
     <h1 className='tituloPedidos'>Pedidos</h1>
 
