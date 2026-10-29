@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+body {
+    min-width: 320px;
+}
+
+main {
+    margin-left: 250px;
+    min-height: 100vh;
+    background-color: #F5F4EF;
+    height: 100%;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    margin: 5vh 10vh;
+    font-size: large;
+}
+
+.titulo p {
+    color: gray;
+}
+
+.cardProdutos {
+    padding: 0 10vh;
+}
+
+.adicionarProdutos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FDFCFA;
+    height: 10vh;
+    padding: 0 4vh;
+    margin-bottom: 2vh;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.botaoAdicionar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #334F3C;
+    height: 6vh;
+    width: 25vh;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+    border: transparent;   
+}
+
+.botaoAdicionar img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.barra-pesquisa {
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  width: 38vh;
+  height: 6vh;
+}
+
+.barra-pesquisa input {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    outline: none;
+    border: transparent;
+}
+
+.barra-pesquisa img {
+    width: 4vh;
+    height: 4vh;
+}
+
+.lista-aberta {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.listaProdutos {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    gap: 3vh;
+    background-color: #FDFCFA;
+    padding: 2vh 4vh;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);    
+}
+
+.listaProdutos header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3vh;
+}
+
+.botaoFiltro {
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  width: 38vh;
+  height: 6vh;    
+  font-size: medium;
+  font-family: sans-serif;
+}
+
+.tabela-produto {
+    height: 95vh;
+    border: 2px solid #EFEDE7;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabela-produto table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.barraCategoria {
+    background-color: #EFEDE7;
+    height: 7vh;
+}
+
+.barraCategoria th {
+    text-align: center;
+    padding: 20px;
+}
+
+.barraCategoria th:first-child {
+    text-align: left;
+}
+
+.barraCategoria th:last-child {
+    text-align: right;
+    display: flex;
+    justify-content: center;
+}
+
+.tabela-produto tbody {
+    text-align: center;
+    padding: 20px;
+}
+.tabela-produto tbody td {
+    border-bottom: 2px solid #EFEDE7;
+    padding: 20px 0;
+}

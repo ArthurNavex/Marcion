@@ -24,7 +24,7 @@ main {
     background-color: #244F39;
     width: 250px;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     background-image: url('../assets/fundoAsside.png');
     background-size: 100% 100%;
     background-position: bottom  ;
@@ -43,6 +43,10 @@ main {
     align-items: center;
     border-bottom: 2px solid #D6D5CF;
     gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #FDFCFA;
 }
 
 .usuario {
