@@ -104,7 +104,7 @@ main {
 .listaProdutos {
     display: flex;
     flex-direction: column;
-    height: 65vh;
+    height: 68vh;
     gap: 3vh;
     background-color: #FDFCFA;
     padding: 2vh 4vh;
@@ -134,10 +134,10 @@ main {
 }
 
 .tabela-produto {
-    height: 95vh;
+    min-height: 43vh;
     border: 2px solid #EFEDE7;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .tabela-produto table {
@@ -151,26 +151,115 @@ main {
     height: 7vh;
 }
 
+.barraCategoria thead {
+    position: fixed;
+}
+
 .barraCategoria th {
-    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #EFEDE7;
     padding: 20px;
 }
 
 .barraCategoria th:first-child {
-    text-align: left;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #EFEDE7;
+    padding: 20px;
 }
 
 .barraCategoria th:last-child {
-    text-align: right;
-    display: flex;
     justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #EFEDE7;
+    padding: 20px;
 }
 
 .tabela-produto tbody {
     text-align: center;
     padding: 20px;
+    height: 100%;
 }
 .tabela-produto tbody td {
     border-bottom: 2px solid #EFEDE7;
     padding: 20px 0;
+}
+
+.paginacao-produtos {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    gap: 12px;
+    padding: 10px 0 4px;
+    border-top: 1px solid #EFEDE7;
+}
+
+.paginacao-produtos__paginas {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.paginacao-produtos__botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #DDDAD2;
+    border-radius: 6px;
+    background-color: #FDFCFA;
+    color: #555950;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.paginacao-produtos__navegacao {
+    gap: 8px;
+    padding: 0 12px;
+}
+
+.paginacao-produtos__navegacao span {
+    font-size: 22px;
+}
+
+.paginacao-produtos__botao--ativo {
+    border-color: #334F3C;
+    background-color: #334F3C;
+    color: #FFF;
+    font-weight: 600;
+}
+
+.paginacao-produtos__reticencias {
+    padding: 0 4px;
+    color: #777A72;
+}
+
+.paginacao-produtos__botao:hover {
+    background-color: #334F3C;
+    cursor: pointer;
+    color: #FFF;
+}
+
+.botoes-acao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.botoes-acao img {
+    width: 7vh;
+    height: 7vh;
+    object-fit: contain;
+    cursor: pointer;
 }

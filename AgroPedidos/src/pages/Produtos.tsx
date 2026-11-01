@@ -2,6 +2,8 @@ import { useState } from 'react'
 import '../style/Produtos.css'
 import botaoAdiciar from '../assets/adicioar-botao.png'
 import lupa from '../assets/lupa.png'
+import editar from '../assets/editar.png'
+import excluir from '../assets/excluir.png'
 
 function Produtos() {
   interface Produto {
@@ -11,19 +13,34 @@ function Produtos() {
     estoque: number,
     valor: number
   }
+  
+  function conferirSituacao(estoque: number) {
+    if(estoque === 0) {
+      return 'Indisponivel';
+    }
+
+    if (estoque <= 10 && estoque > 0) {
+      return 'Estoque Baixo'
+    }
+
+    return 'Disponivel'
+  }
+
 
   const [produtos, setProdutos] = useState<Produto[]>([
-    { id: 1, nome: 'Soja', categoria: 'Grãos', estoque: 120, valor: 140.00 },
-    { id: 2, nome: 'Milho', categoria: 'Grãos', estoque: 85, valor: 90.00 },
-    { id: 3, nome: 'Adubo NPK', categoria: 'Fertilizantes', estoque: 18, valor: 120.00 }
+    { id: 1, nome: 'Soja', categoria: 'Farelo', estoque: 120, valor: 140.00 },
+    { id: 2, nome: 'Milho', categoria: 'Grãos', estoque: 10, valor: 90.00 },
+    { id: 3, nome: 'Adubo NPK', categoria: 'Fertilizantes', estoque: 0, valor: 120.00 },
+    { id: 4, nome: 'Trigo', categoria: 'Farelo', estoque: 10, valor: 90.00 },
+    { id: 2, nome: 'Milho', categoria: 'Grãos', estoque: 10, valor: 90.00 },
 ]);
 
   const [listaAberta, setListaAberta] = useState(false)
   const [buscaProduto, setBuscaProduto] = useState('')
   const produtosFiltrados = produtos.filter(produto =>
         produto.nome.toLowerCase().includes(buscaProduto.toLowerCase())
-      )
-
+      );
+  
   return (
     <>
     <div className="titulo">
@@ -105,13 +122,35 @@ function Produtos() {
                   <td>{produto.categoria}</td>
                   <td>{produto.estoque}</td>
                   <td>{produto.valor}</td>
+                  <td>{conferirSituacao(produto.estoque)}</td>
+                  <td className='botoes-acao'><img src={editar} alt="editar"/> <img src={excluir} alt="excluir" /></td>
                 </tr>
               )           
               )}
             </tbody>
           </table>
-
         </div>
+
+        <nav className='paginacao-produtos' aria-label='Paginação de produtos'>
+          <button type='button' className='paginacao-produtos__botao paginacao-produtos__navegacao'>
+            <span aria-hidden='true'>&lsaquo;</span>
+            Anterior
+          </button>
+
+          <div className='paginacao-produtos__paginas'>
+            <button type='button' className='paginacao-produtos__botao paginacao-produtos__botao--ativo' aria-current='page' aria-label='Página 1'>1</button>
+            <button type='button' className='paginacao-produtos__botao' aria-label='Página 2'>2</button>
+            <button type='button' className='paginacao-produtos__botao' aria-label='Página 3'>3</button>
+            <span className='paginacao-produtos__reticencias' aria-hidden='true'>…</span>
+            <button type='button' className='paginacao-produtos__botao' aria-label='Página 10'>10</button>
+          </div>
+
+          <button type='button' className='paginacao-produtos__botao paginacao-produtos__navegacao'>
+            Próxima
+            <span aria-hidden='true'>&rsaquo;</span>
+          </button>
+        </nav>
+
       </section>
     </div>
     </>
