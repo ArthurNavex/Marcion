@@ -23,6 +23,7 @@ public class ProdutoController : ControllerBase
         var ProdutoCriado = new Produto
         {
             Nome = request.Nome,
+            Categoria = request.Categoria,
             PrecoUnitario = request.Preco,
             Estoque = request.Estoque
         };
@@ -34,6 +35,7 @@ public class ProdutoController : ControllerBase
         {
             Id = ProdutoCriado.Id,
             Nome = ProdutoCriado.Nome,
+            Categoria = ProdutoCriado.Categoria,
             Preco = ProdutoCriado.PrecoUnitario,
             Estoque = ProdutoCriado.Estoque
         };
@@ -58,6 +60,7 @@ public class ProdutoController : ControllerBase
             {
                 Id = produto.Id,
                 Nome = produto.Nome,
+                Categoria = produto.Categoria,
                 Preco = produto.PrecoUnitario,
                 Estoque = produto.Estoque 
             });
@@ -80,6 +83,7 @@ public class ProdutoController : ControllerBase
         {
             Id = produto.Id,
             Nome = produto.Nome,
+            Categoria = produto.Categoria,
             Preco = produto.PrecoUnitario,
             Estoque = produto.Estoque
         };
@@ -98,6 +102,7 @@ public class ProdutoController : ControllerBase
         }
 
         produto.Nome = request.Nome;
+        produto.Categoria = request.Categoria;
         produto.PrecoUnitario = request.Preco;
         produto.Estoque = request.Estoque;
 
@@ -107,6 +112,7 @@ public class ProdutoController : ControllerBase
         {
             Id = produto.Id,
             Nome = produto.Nome,
+            Categoria = produto.Categoria,
             Preco = produto.PrecoUnitario,
             Estoque = produto.Estoque
         };

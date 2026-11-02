@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../style/Produtos.css'
 import botaoAdiciar from '../assets/adicioar-botao.png'
 import lupa from '../assets/lupa.png'
 import editar from '../assets/editar.png'
 import excluir from '../assets/excluir.png'
+import ModalProduto from '../components/ModalProduto'
 
 function Produtos() {
   interface Produto {
@@ -27,12 +28,24 @@ function Produtos() {
   }
 
 
-  const [produtos, setProdutos] = useState<Produto[]>([
-    { id: 1, nome: 'Soja', categoria: 'Farelo', estoque: 120, valor: 140.00 },
-    { id: 2, nome: 'Milho', categoria: 'Grãos', estoque: 10, valor: 90.00 },
-    { id: 3, nome: 'Adubo NPK', categoria: 'Fertilizantes', estoque: 0, valor: 120.00 },
-    { id: 4, nome: 'Trigo', categoria: 'Farelo', estoque: 10, valor: 90.00 },
-  ]);
+  const [produtos, setProdutos] = useState<Produto[]>([])
+  const [modalProdutoAberto, setModalProdutoAberto] = useState(false)
+
+  async function buscaDados() {
+    const resposta = await fetch(
+      'http://localhost:5053/api/Produto'
+    )
+    console.log("Status HTTP:", resposta.status)
+
+    const dados = await resposta.json()
+    console.log("Dados da API:", dados)
+
+    setProdutos(dados);
+  }
+
+  useEffect(() =>{
+    buscaDados()
+  }, [])
 
   const [categoriaSelecionada, setCategoriaSelecionada] = useState('todas')
   const [buscaProduto, setBuscaProduto] = useState('')
@@ -52,7 +65,11 @@ function Produtos() {
 
     <div className='cardProdutos'>
       <section className='adicionarProdutos'>
-        <button className='botaoAdicionar'>
+        <button
+          type="button"
+          className='botaoAdicionar'
+          onClick={() => setModalProdutoAberto(true)}
+        >
           <img src={botaoAdiciar} alt="" />
           <span>
             Adicionar Produtos
@@ -121,6 +138,7 @@ function Produtos() {
 
       </section>
     </div>
+    {modalProdutoAberto && <ModalProduto onFechar={() => setModalProdutoAberto(false)} onProdutoCadastrado={buscaDados}/>}
     </>
   )
 }

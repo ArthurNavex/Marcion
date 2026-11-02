@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Routes, Route, Link, NavLink} from 'react-router'
 import logo from './assets/logoAgroPedidosPNG.png'
 import nomeLogo from './assets/nomeLogo.png'
