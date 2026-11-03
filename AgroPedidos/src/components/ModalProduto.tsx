@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import '../style/ModalProduto.css'
-import Produtos from '../pages/Produtos'
 
 interface ModalProdutoProps {
   onFechar: () => void
-  onProdutoCadastrado: () => void
+  onProdutoCadastrado: () => Promise<void>
 }
 
 
@@ -89,6 +88,7 @@ function ModalProduto({ onFechar, onProdutoCadastrado }: ModalProdutoProps) {
                   })
                 }
               >
+                <option value="Farelos">Farelo</option>
                 <option value="Graos">Grãos</option>
                 <option value="Fertilizantes">Fertilizantes</option>
                 <option value="Defensivos">Defensivos</option>
@@ -139,8 +139,14 @@ function ModalProduto({ onFechar, onProdutoCadastrado }: ModalProdutoProps) {
             <button type="button" 
             className="modal-produto-botao 
             modal-produto-cadastrar"
-            onClick={() => {
-              adicionarProduto(), onFechar()
+            onClick={async () => {  
+              try {
+                await adicionarProduto();
+                await onProdutoCadastrado();
+                onFechar();
+              } catch (erro) {
+                console.error('Erro ao cadastrar produto:', erro);
+              }
             }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12l4 4v12a2 2 0 0 1-2 2Z" />

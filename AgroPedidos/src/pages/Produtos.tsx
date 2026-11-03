@@ -5,6 +5,7 @@ import lupa from '../assets/lupa.png'
 import editar from '../assets/editar.png'
 import excluir from '../assets/excluir.png'
 import ModalProduto from '../components/ModalProduto'
+import ModalExcluirProduto from '../components/ModalExcluirProduto'
 
 function Produtos() {
   interface Produto {
@@ -12,7 +13,7 @@ function Produtos() {
     nome: string,
     categoria: string,
     estoque: number,
-    valor: number
+    preco: number
   }
   
   function conferirSituacao(estoque: number) {
@@ -30,6 +31,7 @@ function Produtos() {
 
   const [produtos, setProdutos] = useState<Produto[]>([])
   const [modalProdutoAberto, setModalProdutoAberto] = useState(false)
+  const [modalExcluirProdutoAberto, setModalExcluirProdutoAberto] = useState(false)
 
   async function buscaDados() {
     const resposta = await fetch(
@@ -55,6 +57,8 @@ function Produtos() {
     (categoriaSelecionada === 'todas' ||
      produto.categoria === categoriaSelecionada)
   );
+
+  const [produtoSelecionado, setProdutoSelecionado] = useState<number | null>(null)
 
   return (
     <>
@@ -97,7 +101,7 @@ function Produtos() {
           value={categoriaSelecionada}
           onChange={(event) => setCategoriaSelecionada(event.target.value)}>
             <option value="todas">Todas as categorias</option>
-            <option value="Farelo">Farelo</option>
+            <option value="Farelos">Farelo</option>
             <option value="Grãos">Grãos</option>
             <option value="Fertilizantes">Fertilizantes</option>
             <option value="Sementes">Sementes</option>
@@ -126,9 +130,19 @@ function Produtos() {
                   <td>{produto.nome}</td>
                   <td>{produto.categoria}</td>
                   <td>{produto.estoque}</td>
-                  <td>{produto.valor}</td>
+                  <td>{produto.preco}</td>
                   <td>{conferirSituacao(produto.estoque)}</td>
-                  <td className='botoes-acao'><img src={editar} alt="editar"/> <img src={excluir} alt="excluir" /></td>
+                  <td className='botoes-acao'>
+                    <img src={editar} alt="editar" />
+                    <img
+                      src={excluir}
+                      alt="excluir"
+                      onClick={() => {
+                          setProdutoSelecionado(produto.id);
+                          setModalExcluirProdutoAberto(true);
+                      }}
+                    />
+                  </td>
                 </tr>
               )           
               )}
@@ -139,6 +153,10 @@ function Produtos() {
       </section>
     </div>
     {modalProdutoAberto && <ModalProduto onFechar={() => setModalProdutoAberto(false)} onProdutoCadastrado={buscaDados}/>}
+    {modalExcluirProdutoAberto && (
+      <ModalExcluirProduto onFechar={() => setModalExcluirProdutoAberto(false)} produtoID={produtoSelecionado} 
+      onProdutoExcluido={buscaDados} />
+    )}
     </>
   )
 }
