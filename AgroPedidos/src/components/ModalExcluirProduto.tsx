@@ -1,4 +1,3 @@
-  import { useState } from 'react'
   import '../style/ModalExcluirProduto.css'
 
   interface ModalExcluirProdutoProps {

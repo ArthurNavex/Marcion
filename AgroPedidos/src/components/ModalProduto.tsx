@@ -12,7 +12,7 @@ function ModalProduto({ onFechar, onProdutoCadastrado }: ModalProdutoProps) {
   
   const [produto, setProduto] = useState({
   nome: '',
-  categoria: '',
+  categoria: 'Farelos',
   preco: 0.00,
   estoque: 0
   })
@@ -88,7 +88,7 @@ function ModalProduto({ onFechar, onProdutoCadastrado }: ModalProdutoProps) {
                   })
                 }
               >
-                <option value="Farelos">Farelo</option>
+                <option value="Farelos">Farelos</option>
                 <option value="Graos">Grãos</option>
                 <option value="Fertilizantes">Fertilizantes</option>
                 <option value="Defensivos">Defensivos</option>

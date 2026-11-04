@@ -6,6 +6,7 @@ import editar from '../assets/editar.png'
 import excluir from '../assets/excluir.png'
 import ModalProduto from '../components/ModalProduto'
 import ModalExcluirProduto from '../components/ModalExcluirProduto'
+import ModalEditarProduto from '../components/ModalEditarProduto'
 
 function Produtos() {
   interface Produto {
@@ -32,6 +33,7 @@ function Produtos() {
   const [produtos, setProdutos] = useState<Produto[]>([])
   const [modalProdutoAberto, setModalProdutoAberto] = useState(false)
   const [modalExcluirProdutoAberto, setModalExcluirProdutoAberto] = useState(false)
+  const [modalEditarProdutoAberto, setModalEditarProdutoAberto] = useState(false)
 
   async function buscaDados() {
     const resposta = await fetch(
@@ -87,9 +89,7 @@ function Produtos() {
               placeholder='Pesquisar Cliente'
               value={buscaProduto}
               onChange={event => setBuscaProduto(event.target.value)}
-            />
-
-            
+            /> 
         </div>
       </section>
 
@@ -101,8 +101,8 @@ function Produtos() {
           value={categoriaSelecionada}
           onChange={(event) => setCategoriaSelecionada(event.target.value)}>
             <option value="todas">Todas as categorias</option>
-            <option value="Farelos">Farelo</option>
-            <option value="Grãos">Grãos</option>
+            <option value="Farelos">Farelos</option>
+            <option value="Graos">Grãos</option>
             <option value="Fertilizantes">Fertilizantes</option>
             <option value="Sementes">Sementes</option>
             <option value="Defensivos">Defensivos</option>
@@ -133,7 +133,17 @@ function Produtos() {
                   <td>{produto.preco}</td>
                   <td>{conferirSituacao(produto.estoque)}</td>
                   <td className='botoes-acao'>
-                    <img src={editar} alt="editar" />
+                    <button
+                      type="button"
+                      className="produto-botao-editar"
+                      aria-label={`Editar ${produto.nome}`}
+                      onClick={() => {
+                        setProdutoSelecionado(produto.id)
+                        setModalEditarProdutoAberto(true)}
+                      }
+                    >
+                      <img src={editar} alt="" />
+                    </button>
                     <img
                       src={excluir}
                       alt="excluir"
@@ -153,6 +163,9 @@ function Produtos() {
       </section>
     </div>
     {modalProdutoAberto && <ModalProduto onFechar={() => setModalProdutoAberto(false)} onProdutoCadastrado={buscaDados}/>}
+    {modalEditarProdutoAberto && (
+      <ModalEditarProduto onFechar={() => setModalEditarProdutoAberto(false)} produtoID={produtoSelecionado} onProdutoEditado={buscaDados}/>
+    )}
     {modalExcluirProdutoAberto && (
       <ModalExcluirProduto onFechar={() => setModalExcluirProdutoAberto(false)} produtoID={produtoSelecionado} 
       onProdutoExcluido={buscaDados} />

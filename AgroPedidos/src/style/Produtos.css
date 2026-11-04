@@ -204,3 +204,17 @@ main {
     object-fit: contain;
     cursor: pointer;
 }
+
+.produto-botao-editar {
+    display: inline-flex;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.produto-botao-editar:focus-visible {
+    outline: 2px solid #102F23;
+    outline-offset: 3px;
+}

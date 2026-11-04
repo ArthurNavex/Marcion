@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.modal-editar-produto-overlay,
+.modal-editar-produto-overlay * {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-editar-produto-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.modal-editar-produto {
+    width: 100%;
+    max-width: 600px;
+    max-height: calc(100vh - 48px);
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+    padding: 32px;
+    border-radius: 18px;
+    background-color: #FDFCFA;
+    color: #102F23;
+    box-shadow: 0 20px 60px rgba(16, 47, 35, 0.2);
+}
+
+.modal-editar-produto-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.modal-editar-produto-titulo {
+    margin: 0;
+    color: #102F23;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.modal-editar-produto-fechar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    border: 0;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #102F23;
+}
+
+.modal-editar-produto-fechar svg {
+    width: 20px;
+    height: 20px;
+}
+
+.modal-editar-produto-campos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
+}
+
+.modal-editar-produto-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.modal-editar-produto-campo-inteiro {
+    grid-column: 1 / -1;
+}
+
+.modal-editar-produto-campo-estoque {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 10px);
+}
+
+.modal-editar-produto-campo label {
+    color: #102F23;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.modal-editar-produto-obrigatorio {
+    color: #B71C1C;
+}
+
+.modal-editar-produto-campo input,
+.modal-editar-produto-campo select {
+    width: 100%;
+    min-width: 0;
+    height: 52px;
+    padding: 0 14px;
+    border: 1px solid #D6D5CF;
+    border-radius: 8px;
+    background-color: #FDFCFA;
+    color: #102F23;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.modal-editar-produto-acoes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.modal-editar-produto-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 52px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.modal-editar-produto-cancelar {
+    background-color: #EAE6DE;
+    color: #102F23;
+}
+
+.modal-editar-produto-confirmar {
+    background-color: #1F3729;
+    color: #FFFFFF;
+}
+
+.modal-editar-produto-confirmar:hover {
+    cursor: pointer;
+}
+
+.modal-editar-produto-cancelar,
+.modal-editar-produto-fechar {
+    cursor: pointer;
+}
+
+.modal-editar-produto-confirmar svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+}
+
+.modal-editar-produto-campo input:focus-visible,
+.modal-editar-produto-campo select:focus-visible,
+.modal-editar-produto-botao:focus-visible,
+.modal-editar-produto-fechar:focus-visible {
+    outline: 2px solid #102F23;
+    outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+    .modal-editar-produto-overlay {
+        padding: 16px;
+    }
+
+    .modal-editar-produto {
+        max-height: calc(100vh - 32px);
+        max-height: calc(100dvh - 32px);
+        padding: 24px 20px;
+    }
+
+    .modal-editar-produto-cabecalho {
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .modal-editar-produto-titulo {
+        font-size: 22px;
+    }
+
+    .modal-editar-produto-campos {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .modal-editar-produto-campo-estoque {
+        width: 100%;
+    }
+
+    .modal-editar-produto-acoes {
+        gap: 10px;
+        margin-top: 28px;
+    }
+
+    .modal-editar-produto-botao {
+        gap: 6px;
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+}
