@@ -84,34 +84,89 @@ function ModalAdicionarCliente({ onFechar, onClienteCadastrado}: ModalAdicionarC
             <label htmlFor="modal-adicionar-cliente-telefone">
               Telefone <span className="modal-adicionar-cliente__obrigatorio" aria-hidden="true">*</span>
             </label>
-            <input id="modal-adicionar-cliente-telefone" name="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" aria-required="true" />
+            <input id="modal-adicionar-cliente-telefone"
+             name="telefone" type="tel" 
+             placeholder="(XX) XXXXX-XXXX" 
+             aria-required="true" 
+             value={cliente.telefone}
+             onChange={(event) => setCliente({
+              ...cliente,
+              telefone: event.target.value
+             })}
+             />
           </div>
 
           <div className="modal-adicionar-cliente__campo">
             <label htmlFor="modal-adicionar-cliente-cpf">
               CPF <span className="modal-adicionar-cliente__obrigatorio" aria-hidden="true">*</span>
             </label>
-            <input id="modal-adicionar-cliente-cpf" name="cpf" type="text" placeholder="XXX.XXX.XXX-XX" aria-required="true" />
+            <input id="modal-adicionar-cliente-cpf"
+            name="cpf" 
+            type="text" 
+            placeholder="XXX.XXX.XXX-XX" 
+            aria-required="true" 
+            value={cliente.cpf}
+            onChange={(event) => setCliente({
+              ...cliente,
+              cpf: event.target.value
+            })}
+            />
           </div>
 
           <div className="modal-adicionar-cliente__campo">
             <label htmlFor="modal-adicionar-cliente-cep">CEP</label>
-            <input id="modal-adicionar-cliente-cep" name="cep" type="text" placeholder="XXXXX-XXX" />
+            <input id="modal-adicionar-cliente-cep" 
+            name="cep" 
+            type="text" 
+            placeholder="XXXXX-XXX" 
+            value={cliente.cep}
+            onChange={(event) => setCliente({
+              ...cliente,
+              cep: event.target.value
+            })}
+            />
           </div>
 
           <div className="modal-adicionar-cliente__campo">
             <label htmlFor="modal-adicionar-cliente-cidade">Cidade</label>
-            <input id="modal-adicionar-cliente-cidade" name="cidade" type="text" placeholder="Digite a cidade" />
+            <input id="modal-adicionar-cliente-cidade" 
+            name="cidade" 
+            type="text" 
+            placeholder="Digite a cidade"
+            value={cliente.cidade}
+            onChange={(event) => setCliente({
+              ...cliente,
+              cidade: event.target.value
+            })} 
+            />
           </div>
 
           <div className="modal-adicionar-cliente__campo modal-adicionar-cliente__campo--inteiro">
             <label htmlFor="modal-adicionar-cliente-endereco">Endereço</label>
-            <input id="modal-adicionar-cliente-endereco" name="endereco" type="text" placeholder="Digite o endereço completo" />
+            <input id="modal-adicionar-cliente-endereco" 
+            name="endereco" 
+            type="text" 
+            placeholder="Digite o endereço completo" 
+            value={cliente.endereco}
+            onChange={(event) => setCliente({
+              ...cliente,
+              endereco: event.target.value
+            })}
+            />
           </div>
 
           <div className="modal-adicionar-cliente__campo modal-adicionar-cliente__campo--inteiro">
             <label htmlFor="modal-adicionar-cliente-email">Email</label>
-            <input id="modal-adicionar-cliente-email" name="email" type="text" placeholder="Digite o email" />
+            <input id="modal-adicionar-cliente-email" 
+            name="email" 
+            type="text" 
+            placeholder="Digite o email" 
+            value={cliente.email}
+            onChange={(event) => setCliente({
+              ...cliente,
+              email: event.target.value
+            })}
+            />
           </div>
         </div>
 
@@ -121,7 +176,15 @@ function ModalAdicionarCliente({ onFechar, onClienteCadastrado}: ModalAdicionarC
           </button>
           <button type="button" 
           className="modal-adicionar-cliente__botao modal-adicionar-cliente__botao--adicionar"
-          onClick={adicionarCliente}
+          onClick={async() => {
+            try {
+              await adicionarCliente(),
+              await onClienteCadastrado(),
+              onFechar()
+            } catch {
+              console.log('Não foi possivel cadastrar o Cliente')
+            }
+          }}
           >
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="9" cy="7" r="4" />
