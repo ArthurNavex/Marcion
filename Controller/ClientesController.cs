@@ -146,6 +146,7 @@ public class ClientesController : ControllerBase
         }
 
         _context.Clientes.Remove(cliente);
+        _context.SaveChanges();
 
         return NoContent();
     }

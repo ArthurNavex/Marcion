@@ -86,7 +86,7 @@ function Produtos() {
           <img src={lupa} alt="Pesquisar" />
           <input 
               id="busca-produto" type="text"
-              placeholder='Pesquisar Cliente'
+              placeholder='Pesquisar Produto'
               value={buscaProduto}
               onChange={event => setBuscaProduto(event.target.value)}
             /> 
@@ -132,26 +132,31 @@ function Produtos() {
                   <td>{produto.estoque}</td>
                   <td>{produto.preco}</td>
                   <td>{conferirSituacao(produto.estoque)}</td>
-                  <td className='botoes-acao'>
-                    <button
-                      type="button"
-                      className="produto-botao-editar"
-                      aria-label={`Editar ${produto.nome}`}
-                      onClick={() => {
-                        setProdutoSelecionado(produto.id)
-                        setModalEditarProdutoAberto(true)}
-                      }
-                    >
-                      <img src={editar} alt="" />
-                    </button>
-                    <img
-                      src={excluir}
-                      alt="excluir"
-                      onClick={() => {
-                          setProdutoSelecionado(produto.id);
-                          setModalExcluirProdutoAberto(true);
-                      }}
-                    />
+                  <td>
+                    <div className="botoes-acao">
+                      <button
+                        type="button"
+                        className="produto-botao-acao produto-botao-editar"
+                        aria-label={`Editar ${produto.nome}`}
+                        onClick={() => {
+                          setProdutoSelecionado(produto.id)
+                          setModalEditarProdutoAberto(true)}
+                        }
+                      >
+                        <img src={editar} alt="" />
+                      </button>
+                      <button
+                        type="button"
+                        className="produto-botao-acao produto-botao-excluir"
+                        aria-label={`Excluir ${produto.nome}`}
+                        onClick={() => {
+                            setProdutoSelecionado(produto.id);
+                            setModalExcluirProdutoAberto(true);
+                        }}
+                      >
+                        <img src={excluir} alt="" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               )           

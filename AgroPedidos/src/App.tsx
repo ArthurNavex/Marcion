@@ -9,6 +9,7 @@ import './style/App.css'
 import './index.css'
 import Produtos from './pages/Produtos'
 import Pedidos from './pages/Pedidos'
+import Clientes from './pages/Clientes'
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
         <Routes>
           <Route path="/produtos" element={<Produtos />} />
           <Route path='/pedidos' element={<Pedidos/>}></Route>
+          <Route path='/clientes' element={<Clientes/>} ></Route>
         </Routes>
       </main>
     </>

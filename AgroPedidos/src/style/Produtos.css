@@ -187,34 +187,54 @@ main {
     height: 100%;
 }
 .tabela-produto tbody td {
-    border-bottom: 2px solid #EFEDE7;
-    padding: 20px 0;
+    height: 69px;
+  padding: 14px 18px;
+  border-bottom: 1px solid #E7E5DE;
+  color: #666666;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .botoes-acao {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
 }
 
-.botoes-acao img {
-    width: 7vh;
-    height: 7vh;
+.produto-botao-acao img {
+    display: block;
+    width: 64px;
+    height: 64px;
+    max-width: none;
+    flex-shrink: 0;
     object-fit: contain;
-    cursor: pointer;
 }
 
-.produto-botao-editar {
+.produto-botao-acao {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
     padding: 0;
-    border: 0;
-    border-radius: 8px;
-    background-color: transparent;
+    overflow: hidden;
+    border: 1px solid #E5E5DD;
+    border-radius: 6px;
+    background-color: #F0F2EC;
+    color: #405344;
     cursor: pointer;
 }
 
-.produto-botao-editar:focus-visible {
+.produto-botao-excluir {
+    border-color: #FDECEC;
+    background-color: #FDECEC;
+    color: #B71C1C;
+}
+
+.produto-botao-acao:focus-visible {
     outline: 2px solid #102F23;
     outline-offset: 3px;
 }
